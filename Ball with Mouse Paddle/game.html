@@ -14,7 +14,24 @@
 		var ballSpeedX = 5;
 		var ballSpeedY = 7;
 		
+		const PADDLE_WIDTH = 100;
+		const PADDLE_THICKNESS = 10;
+		var paddleX = 400;
+		
 		var canvas, canvasContext;
+		
+		function updateMousePosition(evt) {
+			var rect = canvas.getBoundingClientRect();
+			var root = document.documentElement;
+			
+			var mouseX = evt.clientX - rect.left - root.scrollLeft;
+			
+			// currently not needed, but keep for later
+			//var mouseY = evt.clientY - rect.top - root.scrollTop;
+			
+			// center in the middle
+			paddleX = mouseX - PADDLE_WIDTH / 2;
+		}
 		
 		window.onload = function() {
 			canvas = document.getElementById("gameCanvas");
@@ -22,6 +39,8 @@
 			
 			var framesPerSecond = 30;
 			setInterval(updateAll, 1000 / framesPerSecond);
+			
+			canvas.addEventListener("mousemove", updateMousePosition);
 		}
 		
 		function updateAll() {
@@ -34,7 +53,13 @@
 			// I will get a line instead of a ball moving
 			// As all the previous drawn balls will not be overwritten
 			colorRect(0, 0, canvas.width, canvas.height, "black");
-			colorCircle(ballX, ballY, 10, "red");
+			
+			colorCircle(ballX, ballY, 10, "red"); // draw ball
+			colorRect(paddleX, 
+								canvas.height - PADDLE_THICKNESS,
+								PADDLE_WIDTH, 
+								PADDLE_THICKNESS, 
+								"white");
 		}
 		
 		function moveAll() {
