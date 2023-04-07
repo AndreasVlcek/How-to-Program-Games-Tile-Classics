@@ -4,8 +4,15 @@
 		<meta content="text/html;charset=utf8" http-equiv="Content-Type">
 		<meta content="utf8" http-equiv="encoding">
 	</head>
-	This text <b>should be bold</b>
+	<body>
+		<canvas id="gameCanvas" width="800" height="600"></canvas>
+	</body>
 	<script>
-		console.log("text from script");
+		var canvas, canvasContext;
+		
+		window.onload = function() {
+			canvas = document.getElementById("gameCanvas");
+			canvasContext = canvas.getContext("2d");
+		}
 	</script>
 </html>
