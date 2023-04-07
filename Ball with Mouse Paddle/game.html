@@ -48,6 +48,11 @@
 			drawAll();
 		}
 		
+		function ballReset() {
+			ballX = canvas.width / 2;
+			ballY = canvas.height / 2;
+		}
+		
 		function drawAll() {
 			// If I don't redraw the rect every time as well,
 			// I will get a line instead of a ball moving
@@ -79,7 +84,8 @@
 			}
 			
 			if (ballY > canvas.height) {
-				ballSpeedY *= -1;
+				ballReset();
+				//ballSpeedY *= -1;
 			}
 		}
 		
