@@ -25,6 +25,24 @@
 		}
 		
 		function updateAll() {
+			moveAll();
+			drawAll();
+		}
+		
+		function drawAll() {
+			// If I don't redraw the rect every time as well,
+			// I will get a line instead of a ball moving
+			// As all the previous drawn balls will not be overwritten
+			canvasContext.fillStyle = "black";
+			canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+			
+			canvasContext.fillStyle = "red";
+			canvasContext.beginPath();
+			canvasContext.arc(ballX, ballY, 10, 0, Math.PI * 2, true);
+			canvasContext.fill();
+		}
+		
+		function moveAll() {
 			ballX += ballSpeedX;
 			ballY += ballSpeedY;
 			
@@ -43,17 +61,6 @@
 			if (ballY > canvas.height) {
 				ballSpeedY *= -1;
 			}
-			
-			// If I don't redraw the rect every time as well,
-			// I will get a line instead of a ball moving
-			// As all the previous drawn balls will not be overwritten
-			canvasContext.fillStyle = "black";
-			canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-			
-			canvasContext.fillStyle = "red";
-			canvasContext.beginPath();
-			canvasContext.arc(ballX, ballY, 10, 0, Math.PI * 2, true);
-			canvasContext.fill();
 		}
 	</script>
 </html>
