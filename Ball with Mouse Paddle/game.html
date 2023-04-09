@@ -17,10 +17,7 @@
 		const BRICK_W = 100;
 		const BRICK_H = 50;
 		const BRICK_COUNT = 4;
-		var brick0 = true;
-		var brick1 = true;
-		var brick2 = true;
-		var brick3 = true;
+		var brickGrid = [true, false, true, true];
 		
 		const PADDLE_WIDTH = 100;
 		const PADDLE_THICKNESS = 10;
@@ -64,16 +61,16 @@
 		}
 		
 		function drawBricks() {
-			if (brick0) {
+			if (brickGrid[0]) {
 				colorRect(BRICK_W * 0, 0, BRICK_W - 2, BRICK_H, "blue");
 			}
-			if (brick1) {
+			if (brickGrid[1]) {
 				colorRect(BRICK_W * 1, 0, BRICK_W - 2, BRICK_H, "blue");
 			}
-			if (brick2) {
+			if (brickGrid[2]) {
 				colorRect(BRICK_W * 2, 0, BRICK_W - 2, BRICK_H, "blue");
 			}
-			if (brick3) {
+			if (brickGrid[3]) {
 				colorRect(BRICK_W * 3, 0, BRICK_W - 2, BRICK_H, "blue");		
 			}			
 		} 
