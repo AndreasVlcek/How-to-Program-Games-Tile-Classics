@@ -19,7 +19,7 @@
 		const BRICK_GAP = 2;
 		const BRICK_COLS = 8;
 		const BRICK_ROWS = 4;
-		var brickGrid = new Array(BRICK_COLS);
+		var brickGrid = new Array(BRICK_COLS * BRICK_ROWS);
 		
 		const PADDLE_WIDTH = 100;
 		const PADDLE_THICKNESS = 10;
@@ -43,7 +43,7 @@
 		}
 		
 		function brickReset() {
-			for (var i = 0; i < BRICK_COLS; i++) {
+			for (var i = 0; i < BRICK_COLS * BRICK_ROWS; i++) {
 				/*
 				if (Math.random() < 0.5) {
 					brickGrid[i] = true;
@@ -53,6 +53,8 @@
 				*/
 				brickGrid[i] = true;
 			} // end of for each brick
+			
+			//brickGrid[21] = false;
 		} // end of brickReset func
 		
 		window.onload = function() {
@@ -78,9 +80,13 @@
 		}
 		
 		function drawBricks() {
+		
 			for (var eachRow = 0; eachRow < BRICK_ROWS; eachRow++) {
 				for (var eachCol = 0; eachCol < BRICK_COLS; eachCol++) {
-					if (brickGrid[eachCol]) {
+				
+					var arrayIndex = BRICK_COLS * eachRow + eachCol;
+					
+					if (brickGrid[arrayIndex]) {
 						colorRect(BRICK_W * eachCol, BRICK_H * eachRow, 
 							BRICK_W - BRICK_GAP, BRICK_H - BRICK_GAP, "blue");
 					} // end of is this brick here
