@@ -44,16 +44,8 @@
 		
 		function brickReset() {
 			for (var i = 0; i < BRICK_COLS * BRICK_ROWS; i++) {
-				
-				if (Math.random() < 0.5) {
-					brickGrid[i] = true;
-				} else {
-					brickGrid[i] = false;
-				}	// end of else (rand check)
-				//brickGrid[i] = true;
+				brickGrid[i] = true;
 			} // end of for each brick
-			
-			//brickGrid[21] = false;
 		} // end of brickReset func
 		
 		window.onload = function() {
@@ -117,6 +109,11 @@
 			var brickIndexUnderMouse = rowColToArrayIndex(mouseBrickCol, mouseBrickRow);
 			colorText(mouseBrickCol + "," + mouseBrickRow + ":" + brickIndexUnderMouse, 
 					mouseX, mouseY, "yellow");
+					
+			if (brickIndexUnderMouse >= 0 && 
+					brickIndexUnderMouse < BRICK_COLS * BRICK_ROWS) {
+						brickGrid[brickIndexUnderMouse] = false;
+					}
 		}
 		
 		function moveAll() {
