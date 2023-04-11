@@ -103,17 +103,6 @@
 								"white");
 								
 			drawBricks();
-			
-			var mouseBrickCol = Math.floor(mouseX / BRICK_W);
-			var mouseBrickRow = Math.floor(mouseY / BRICK_H);
-			var brickIndexUnderMouse = rowColToArrayIndex(mouseBrickCol, mouseBrickRow);
-			colorText(mouseBrickCol + "," + mouseBrickRow + ":" + brickIndexUnderMouse, 
-					mouseX, mouseY, "yellow");
-					
-			if (brickIndexUnderMouse >= 0 && 
-					brickIndexUnderMouse < BRICK_COLS * BRICK_ROWS) {
-						brickGrid[brickIndexUnderMouse] = false;
-					}
 		}
 		
 		function moveAll() {
@@ -134,6 +123,20 @@
 			
 			if (ballY > canvas.height) {
 				ballReset();
+			}
+			
+			var ballBrickCol = Math.floor(ballX / BRICK_W);
+			var ballBrickRow = Math.floor(ballY / BRICK_H);
+			var brickIndexUnderBall = rowColToArrayIndex(ballBrickCol, ballBrickRow);
+			
+			/*
+			colorText(mouseBrickCol + "," + mouseBrickRow + ":" + brickIndexUnderMouse, 
+					mouseX, mouseY, "yellow");
+			*/
+					
+			if (brickIndexUnderBall >= 0 && 
+					brickIndexUnderBall < BRICK_COLS * BRICK_ROWS) {
+						brickGrid[brickIndexUnderBall] = false;
 			}
 			
 			// Get all four edges of the paddle
