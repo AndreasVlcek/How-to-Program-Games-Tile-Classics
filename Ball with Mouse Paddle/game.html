@@ -58,6 +58,7 @@
 			canvas.addEventListener("mousemove", updateMousePosition);
 			
 			brickReset();
+			//ballReset();
 		}
 		
 		function updateAll() {
@@ -105,7 +106,7 @@
 			drawBricks();
 		}
 		
-		function moveAll() {
+		function ballMove() {
 			ballX += ballSpeedX;
 			ballY += ballSpeedY;
 			
@@ -124,7 +125,9 @@
 			if (ballY > canvas.height) {
 				ballReset();
 			}
-			
+		}
+				
+		function ballBrickHandling() {
 			var ballBrickCol = Math.floor(ballX / BRICK_W);
 			var ballBrickRow = Math.floor(ballY / BRICK_H);
 			var brickIndexUnderBall = rowColToArrayIndex(ballBrickCol, ballBrickRow);
@@ -137,12 +140,14 @@
 			if (ballBrickCol >= 0 && ballBrickCol < BRICK_COLS &&
 					ballBrickRow >= 0 && ballBrickRow < BRICK_ROWS) {
 					
-						if(brickGrid[brickIndexUnderBall]) {
+					if(brickGrid[brickIndexUnderBall]) {
 							brickGrid[brickIndexUnderBall] = false;
 							ballSpeedY *= -1;
-						}
-			}
-			
+					} // end of brick found
+			} // end of valid col and row
+		} // end of brickHandling function
+		
+		function ballPaddleHandling() {
 			// Get all four edges of the paddle
 			var paddleTopEdgeY = canvas.height - PADDLE_DIST_FROM_EDGE;
 			var paddleBottomEdgeY = paddleTopEdgeY + PADDLE_THICKNESS;
@@ -162,6 +167,12 @@
 				
 				ballSpeedX = ballDistFromPaddleCenterX * 0.35;
 			}
+		}
+		
+		function moveAll() {
+			ballMove();
+			ballBrickHandling();
+			ballPaddleHandling();
 		}
 		
 		function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
