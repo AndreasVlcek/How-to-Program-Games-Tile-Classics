@@ -94,18 +94,25 @@
 			if (ballX < 0) {
 				ballSpeedX *= -1;
 			}
-			
 			if (ballX > canvas.width) {
 				ballSpeedX *= -1;
 			}
-			
 			if (ballY < 0) {
 				ballSpeedY *= -1;
 			}
-			
 			if (ballY > canvas.height) {
 				ballReset();
 				brickReset();
+			}
+		}
+		
+		function isBrickAtColRow(col, row) {
+			if (col >= 0 && col < BRICK_COLS &&
+					row >= 0 && row < BRICK_ROWS) {
+				var brickIndexUnderCoord = rowColToArrayIndex(col, row);
+				return brickGrid[brickIndexUnderCoord];
+			} else {
+				return false;
 			}
 		}
 		
@@ -122,7 +129,7 @@
 			if (ballBrickCol >= 0 && ballBrickCol < BRICK_COLS &&
 					ballBrickRow >= 0 && ballBrickRow < BRICK_ROWS) {
 					
-					if(brickGrid[brickIndexUnderBall]) {
+					if (isBrickAtColRow(ballBrickCol, ballBrickRow)) {
 							brickGrid[brickIndexUnderBall] = false;
 							bricksLeft--;
 							
@@ -136,7 +143,7 @@
 							if (prevBrickCol != ballBrickCol) {
 								var adjBrickSide = rowColToArrayIndex(prevBrickCol, ballBrickRow);
 								
-								if (brickGrid[adjBrickSide] == false) {
+								if (isBrickAtColRow(prevBrickCol, ballBrickRow) == false) {
 									ballSpeedX *= -1;
 									bothTestsFailed = false;
 								}
@@ -144,7 +151,7 @@
 							if (prevBrickRow != ballBrickRow) {
 								var adjBrickTopBot = rowColToArrayIndex(ballBrickCol, prevBrickRow);
 							
-								if (brickGrid[adjBrickTopBot] == false) {
+								if (isBrickAtColRow(ballBrickCol, prevBrickRow) == false) {
 									ballSpeedY *= -1;
 									bothTestsFailed = false;
 								}
