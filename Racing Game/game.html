@@ -21,12 +21,7 @@
 		const BRICK_ROWS = 14;
 		var brickGrid = new Array(BRICK_COLS * BRICK_ROWS);
 		var bricksLeft = 0;
-		
-		const PADDLE_WIDTH = 100;
-		const PADDLE_THICKNESS = 10;
-		const PADDLE_DIST_FROM_EDGE = 60;
-		var paddleX = 400;
-		
+				
 		var canvas, canvasContext;
 		
 		var mouseX = 0;
@@ -38,10 +33,7 @@
 			
 			mouseX = evt.clientX - rect.left - root.scrollLeft;
 			mouseY = evt.clientY - rect.top - root.scrollTop;
-			
-			// center in the middle
-			paddleX = mouseX - PADDLE_WIDTH / 2;
-			
+						
 			// cheat / hack to test the ball in any postion
 			/*
 			ballX = mouseX;
@@ -166,33 +158,7 @@
 					} // end of brick found
 			} // end of valid col and row
 		} // end of brickHandling function
-		
-		function ballPaddleHandling() {
-			// Get all four edges of the paddle
-			var paddleTopEdgeY = canvas.height - PADDLE_DIST_FROM_EDGE;
-			var paddleBottomEdgeY = paddleTopEdgeY + PADDLE_THICKNESS;
-			var paddleLeftEdgeX = paddleX;
-			var paddleRightEdgeX = paddleX + PADDLE_WIDTH;
-			
-			if (ballY > paddleTopEdgeY && 		// below the top of the paddle
-					ballY < paddleBottomEdgeY && 	// above bottom of paddle
-					ballX > paddleLeftEdgeX && 		// right of the left side of paddle
-					ballX < paddleRightEdgeX			// left of the right side of paddle
-			) {
-				ballSpeedY *= -1;
-				
-				// advanced ball control
-				var centerOfPaddleX = paddleX + PADDLE_WIDTH / 2;
-				var ballDistFromPaddleCenterX = ballX - centerOfPaddleX;
-				
-				ballSpeedX = ballDistFromPaddleCenterX * 0.35;
-				
-				if (bricksLeft == 0) {
-					brickReset();
-				}
-			}
-		}
-				
+						
 		function rowColToArrayIndex(col, row) {
 			return col + BRICK_COLS * row;
 		}
@@ -218,20 +184,13 @@
 			// As all the previous drawn balls will not be overwritten
 			colorRect(0, 0, canvas.width, canvas.height, "black");
 			
-			colorCircle(ballX, ballY, 10, "white"); // draw ball
-			colorRect(paddleX, 
-								canvas.height - PADDLE_DIST_FROM_EDGE,
-								PADDLE_WIDTH, 
-								PADDLE_THICKNESS, 
-								"white");
-								
+			colorCircle(ballX, ballY, 10, "white"); // draw ball								
 			drawBricks();
 		}
 						
 		function moveAll() {
 			ballMove();
 			ballBrickHandling();
-			ballPaddleHandling();
 		}
 		
 		function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor) {
