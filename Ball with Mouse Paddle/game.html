@@ -9,19 +9,30 @@
 	</body>
 	<script>
 	
+		// start coordinates of ball
 		var ballX = 75;
 		var ballY = 75;
+		
+		// initial speed of ball
 		var ballSpeedX = 5;
 		var ballSpeedY = 7;
 		
+		// brick dimensions
 		const BRICK_W = 80;
 		const BRICK_H = 20;
+		
+		// drawing a little gap between bricks
 		const BRICK_GAP = 2;
+		
+		// brick dimensions
 		const BRICK_COLS = 10;
 		const BRICK_ROWS = 14;
+		
+		// create an array of bricks (10 * 14)
 		var brickGrid = new Array(BRICK_COLS * BRICK_ROWS);
 		var bricksLeft = 0;
 		
+		// paddle dimensions
 		const PADDLE_WIDTH = 100;
 		const PADDLE_THICKNESS = 10;
 		const PADDLE_DIST_FROM_EDGE = 60;
