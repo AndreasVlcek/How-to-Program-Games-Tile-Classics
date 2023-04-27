@@ -103,19 +103,6 @@
 			
 			carAng += 0.02;
 			
-			if (carX < 0 && carSpeedX < 0.0) {
-				carSpeedX *= -1;
-			}
-			if (carX > canvas.width && carSpeedX > 0.0) {
-				carSpeedX *= -1;
-			}
-			if (carY < 0 && carSpeedY < 0.0) {
-				carSpeedY *= -1;
-			}
-			if (carY > canvas.height) {
-				carReset();
-				trackReset();
-			}
 		}
 		
 		function isTrackAtColRow(col, row) {
@@ -132,46 +119,12 @@
 			var carTrackCol = Math.floor(carX / TRACK_W);
 			var carTrackRow = Math.floor(carY / TRACK_H);
 			var trackIndexUnderCar = rowColToArrayIndex(carTrackCol, carTrackRow);
-			
-			/*
-			colorText(mouseTrackCol + "," + mouseTrackRow + ":" + trackIndexUnderMouse, 
-					mouseX, mouseY, "yellow");
-			*/
-					
+								
 			if (carTrackCol >= 0 && carTrackCol < TRACK_COLS &&
 					carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
 					
 					if (isTrackAtColRow(carTrackCol, carTrackRow)) {							
-							var prevCarX = carX - carSpeedX;
-							var prevCarY = carY - carSpeedY;
-							var prevTrackCol = Math.floor(prevCarX / TRACK_W);
-							var prevTrackRow = Math.floor(prevCarY / TRACK_H);
-							
-							var bothTestsFailed = true;
-							
-							if (prevTrackCol != carTrackCol) {
-								var adjTrackSide = rowColToArrayIndex(prevTrackCol, carTrackRow);
-								
-								if (isTrackAtColRow(prevTrackCol, carTrackRow) == false) {
-									carSpeedX *= -1;
-									bothTestsFailed = false;
-								}
-							}
-							if (prevTrackRow != carTrackRow) {
-								var adjTrackTopBot = rowColToArrayIndex(carTrackCol, prevTrackRow);
-							
-								if (isTrackAtColRow(carTrackCol, prevTrackRow) == false) {
-									carSpeedY *= -1;
-									bothTestsFailed = false;
-								}
-							}
-							
-							// armpit case, prevents car from going right through
-							if (bothTestsFailed) {
-								carSpeedX *= -1;
-								carSpeedY *= -1;
-							}
-							
+							carSpeed *= -1;
 					} // end of track found
 			} // end of valid col and row
 		} // end of trackHandling function
