@@ -67,6 +67,8 @@
 			setInterval(updateAll, 1000 / framesPerSecond);
 			
 			canvas.addEventListener("mousemove", updateMousePosition);
+			document.addEventListener("keydown", keyPressed);
+			document.addEventListener("keyup", keyReleased);
 			
 			carPic.onload = function() {
 				carPicLoaded = true;
