@@ -58,6 +58,14 @@
 			carSpeedY = -4;
 			*/
 		}
+		
+		function keyPressed(evt) {
+			console.log("Key pressed: " + evt.keyCode)
+		}
+		
+		function keyReleased(evt) {
+			console.log("Key released: " + evt.keyCode)
+		}
 
 		window.onload = function() {
 			canvas = document.getElementById("gameCanvas");
