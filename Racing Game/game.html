@@ -178,9 +178,15 @@
 			if (carTrackCol >= 0 && carTrackCol < TRACK_COLS &&
 					carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
 					
-					if (isTrackAtColRow(carTrackCol, carTrackRow)) {							
-							carSpeed *= -0.5;
-					} // end of track found
+				if (isTrackAtColRow(carTrackCol, carTrackRow)) {
+					
+					// next two lines added to fix a bug, mentioned in video 9.6
+					// undoes the car movement which got it onto the wall
+					carX -= Math.cos(carAng) * carSpeed;
+					carY -= Math.sin(carAng) * carSpeed;						
+						
+					carSpeed *= -0.5;
+				} // end of track found
 			} // end of valid col and row
 		} // end of trackHandling function
 						
