@@ -98,7 +98,7 @@
 				keyHeld_Gas = false;
 			}
 			if (evt.keyCode == KEY_DOWN_ARROW) {
-				keyHeld_Reverse -= false;
+				keyHeld_Reverse = false;
 			}
 		}
 
@@ -179,7 +179,7 @@
 					carTrackRow >= 0 && carTrackRow < TRACK_ROWS) {
 					
 					if (isTrackAtColRow(carTrackCol, carTrackRow)) {							
-							carSpeed *= -1;
+							carSpeed *= -0.5;
 					} // end of track found
 			} // end of valid col and row
 		} // end of trackHandling function
