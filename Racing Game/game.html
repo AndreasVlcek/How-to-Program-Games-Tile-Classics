@@ -134,6 +134,7 @@
 					
 					if (trackGrid[arrayIndex] == 2) {
 						trackGrid[arrayIndex] = 0;
+						carAng = -Math.PI / 2;
 						carX = eachCol * TRACK_W + TRACK_W / 2;
 						carY = eachRow * TRACK_H + TRACK_H / 2;
 					
@@ -143,8 +144,11 @@
 		}
 		
 		function carMove() {
+			
+			carSpeed *= 0.97;
+		
 			if (keyHeld_Gas) {
-				carSpeed += 0.02;
+				carSpeed += 0.3;
 			}
 			if (keyHeld_Reverse) {
 				carSpeed -= 0.2;
