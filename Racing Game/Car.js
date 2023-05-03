@@ -51,3 +51,11 @@ function carDraw() {
 		drawBitmapCenteredWithRotation(carPic, carX, carY, carAng);
 	}	
 }
+
+function carImageLoad() {
+	carPic.onload = function() {
+		carPicLoaded = true;
+	}
+	
+	carPic.src = "player1car.png";
+}
