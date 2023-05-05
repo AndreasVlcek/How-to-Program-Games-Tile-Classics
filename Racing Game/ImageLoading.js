@@ -2,28 +2,23 @@ var carPic = document.createElement("img");
 var wallPic = document.createElement("img");
 var roadPic = document.createElement("img");
 
-var picsToLoad = 3;
+var picsToLoad = 0;
 
 function countLoadedImagesAndLaunchIfReady() {
-	picsToLoad --;
+	picsToLoad--;
 	if (picsToLoad == 0) {
 		imageLoadingDoneStartGame();
 	}
 }
 
-function carImageLoad() {
-	carPic.onload = countLoadedImagesAndLaunchIfReady;
-	carPic.src = "player1car.png";
-}
-
-function trackLoadImages() {
-	roadPic.onload = countLoadedImagesAndLaunchIfReady;
-	wallPic.onload = countLoadedImagesAndLaunchIfReady;
-	roadPic.src = "track_road.png";
-	wallPic.src = "track_wall.png";
+function beginLoadingImage(imgVar, fileName) {
+	picsToLoad++;
+	imgVar.onload = countLoadedImagesAndLaunchIfReady;
+	imgVar.src = fileName;
 }
 
 function loadImages() {
-	carImageLoad();
-	trackLoadImages();
+	beginLoadingImage(carPic, "player1car.png");
+	beginLoadingImage(roadPic, "track_road.png");
+	beginLoadingImage(wallPic, "track_wall.png");
 }
