@@ -12,13 +12,21 @@ function countLoadedImagesAndLaunchIfReady() {
 }
 
 function beginLoadingImage(imgVar, fileName) {
-	picsToLoad++;
 	imgVar.onload = countLoadedImagesAndLaunchIfReady;
 	imgVar.src = fileName;
 }
 
 function loadImages() {
-	beginLoadingImage(carPic, "player1car.png");
-	beginLoadingImage(roadPic, "track_road.png");
-	beginLoadingImage(wallPic, "track_wall.png");
+
+	var imageList = [
+				{varName: carPic, theFile: "player1car.png"},
+				{varName: roadPic, theFile: "track_road.png"},
+				{varName: wallPic, theFile: "track_wall.png"}
+			];
+			
+	picsToLoad = imageList.length;
+			
+	for (var i = 0; i < imageList.length; i++) {
+		beginLoadingImage(imageList[i].varName, imageList[i].theFile);
+	}
 }
