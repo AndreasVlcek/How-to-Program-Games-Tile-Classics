@@ -49,6 +49,7 @@ function carTrackHandling(whichCar) {
 
 		if(tileHere == TRACK_GOAL) {
 			console.log(whichCar.name + " WINS!");
+			loadLevel(levelOne);
 		} else if(tileHere != TRACK_ROAD) {
 			// next two lines added to fix a bug, mentioned in video 9.6
 			// undoes the car movement which got it onto the wall
