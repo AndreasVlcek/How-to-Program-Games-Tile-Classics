@@ -10,7 +10,24 @@ function carClass() {
 	this.ang = 0;
 	this.speed = 0;
 	this.myCarPic;
-
+	
+	this.keyHeld_Gas = false;
+	this.keyHeld_Reverse = false;
+	this.keyHeld_TurnLeft = false;
+	this.keyHeld_TurnRight = false;
+	
+	this.controlKeyUp;
+	this.controlKeyRight;
+	this.controlKeyDown;
+	this.controlKeyLeft;
+	
+	this.setupInput = function(upKey, rightKey, downKey, leftKey) {
+		this.controlKeyUp = upKey;
+		this.controlKeyRight = rightKey;
+		this.controlKeyDown = downKey;
+		this.controlKeyLeft = leftKey;
+	}
+	
 	this.reset = function(whichImage) {
 		this.myCarPic = whichImage;
 		
@@ -32,17 +49,17 @@ function carClass() {
 	this.move = function() {
 		this.speed *= GROUNDSPEED_DECAY_MULT;
 
-		if (keyHeld_Gas) {
+		if (this.keyHeld_Gas) {
 			this.speed += DRIVE_POWER;
 		}
-		if (keyHeld_Reverse) {
+		if (this.keyHeld_Reverse) {
 			this.speed -= REVERSE_POWER;
 		}
 		if (Math.abs(this.speed) > MIN_SPEED_TO_TURN) {
-			if (keyHeld_TurnLeft) {
+			if (this.keyHeld_TurnLeft) {
 				this.ang -= TURN_RATE;
 			}
-			if (keyHeld_TurnRight) {
+			if (this.keyHeld_TurnRight) {
 				this.ang += TURN_RATE;
 			}
 		}
