@@ -61,17 +61,20 @@ function rowColToArrayIndex(col, row) {
 }
 
 function drawTracks() {
+	var arrayIndex = 0;
+	var drawTileX = 0;
+	var drawTileY = 0;
 
 	for (var eachRow = 0; eachRow < TRACK_ROWS; eachRow++) {
 		for (var eachCol = 0; eachCol < TRACK_COLS; eachCol++) {
-		
-			var arrayIndex = rowColToArrayIndex(eachCol, eachRow);
 			var tileKindHere = trackGrid[arrayIndex];
-			
 			useImg = trackPics[tileKindHere];
+			canvasContext.drawImage(useImg, drawTileX, drawTileY);
 			
-			canvasContext.drawImage(useImg, TRACK_W * eachCol, TRACK_H * eachRow);
-			// end of is this track here
+			drawTileX += TRACK_W;
+			arrayIndex++;
 		}	// end of for each column
+		drawTileY += TRACK_H;
+		drawTileX = 0;
 	} // end of ror each row
 } // end of drawTracks func
