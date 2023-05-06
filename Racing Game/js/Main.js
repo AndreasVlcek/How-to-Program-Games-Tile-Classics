@@ -19,8 +19,8 @@ function imageLoadingDoneStartGame() {
 	setInterval(updateAll, 1000 / framesPerSecond);
 	
 	setupInput();
-	greenCar.reset();
-	blueCar.reset();
+	greenCar.reset(otherCarPic);
+	blueCar.reset(carPic);
 }
 
 function updateAll() {
